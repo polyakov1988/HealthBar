@@ -28,6 +28,6 @@ public class SmoothHealthBar : BaseBar
             StopCoroutine(_coroutine);
         }
 
-        _coroutine = StartCoroutine(FillBar(_health.GetRelativeHealth));
+        _coroutine = StartCoroutine(FillBar(_health.RelativeHealth));
     }
 }

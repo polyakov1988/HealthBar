@@ -7,9 +7,9 @@ public class Health : MonoBehaviour
     
     private float _maxHealth;
 
-    public float GetHealth => _health;
-    public float GetMaxHealth => _maxHealth;
-    public float GetRelativeHealth => _health / _maxHealth;
+    public float CurrentHealth => _health;
+    public float MaxHealth => _maxHealth;
+    public float RelativeHealth => _health / _maxHealth;
     
     public event Action HealthChanged;
 
@@ -21,24 +21,31 @@ public class Health : MonoBehaviour
 
     public void Heal(float healValue)
     {
-        _health += healValue;
-        
-        if (_health > _maxHealth)
+        if (healValue <= 0)
         {
-            _health = _maxHealth;
+            return;
         }
         
-        HealthChanged?.Invoke();
+        _health += healValue;
+
+        ClampHealth();
     }
 
     public void TakeDamage(float damageValue)
     {
+        if (damageValue <= 0)
+        {
+            return;
+        }
+        
         _health -= damageValue;
         
-        if (_health <= 0)
-        {
-            _health = 0;
-        }
+        ClampHealth();
+    }
+
+    private void ClampHealth()
+    {
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
         
         HealthChanged?.Invoke();
     }

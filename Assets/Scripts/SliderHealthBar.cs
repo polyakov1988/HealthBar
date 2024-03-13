@@ -7,6 +7,6 @@ public class SliderHealthBar : BaseBar
 
     protected override void OnHealthChanged()
     {
-        _slider.value = _health.GetRelativeHealth;
+        _slider.value = _health.RelativeHealth;
     }
 }
