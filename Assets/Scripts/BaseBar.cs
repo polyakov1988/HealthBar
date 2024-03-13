@@ -6,12 +6,12 @@ public abstract class BaseBar : MonoBehaviour
     
     protected void OnEnable()
     {
-        _health.healthChanged += OnHealthChanged;
+        _health.HealthChanged += OnHealthChanged;
     }
 
     protected void OnDisable()
     {
-        _health.healthChanged -= OnHealthChanged;
+        _health.HealthChanged -= OnHealthChanged;
     }
 
     protected abstract void OnHealthChanged();

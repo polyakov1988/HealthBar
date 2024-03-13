@@ -11,12 +11,12 @@ public class Health : MonoBehaviour
     public float GetMaxHealth => _maxHealth;
     public float GetRelativeHealth => _health / _maxHealth;
     
-    public event Action healthChanged;
+    public event Action HealthChanged;
 
     private void Start()
     {
         _maxHealth = _health;
-        healthChanged?.Invoke();
+        HealthChanged?.Invoke();
     }
 
     public void Heal(float healValue)
@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
             _health = _maxHealth;
         }
         
-        healthChanged?.Invoke();
+        HealthChanged?.Invoke();
     }
 
     public void TakeDamage(float damageValue)
@@ -40,6 +40,6 @@ public class Health : MonoBehaviour
             _health = 0;
         }
         
-        healthChanged?.Invoke();
+        HealthChanged?.Invoke();
     }
 }
